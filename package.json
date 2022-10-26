@@ -1,0 +1,123 @@
+{
+  "name": "jest-schema-matcher",
+  "version": "1.8.0",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "main": "dist/index",
+  "types": "dist/index.d.ts",
+  "repository": "https://ryparker@github.com/ryparker/jest-schema-matcher.git",
+  "author": "Ryan Parker",
+  "scripts": {
+    "build": "yarn clean && yarn tsc",
+    "lint": "xo src",
+    "fix": "xo src --fix",
+    "test": "yarn build && yarn nyc jest",
+    "clean": "rimraf ./dist"
+  },
+  "xo": {
+    "extends": [
+      "plugin:jest/recommended"
+    ],
+    "rules": {
+      "@typescript-eslint/restrict-plus-operands": 0,
+      "@typescript-eslint/restrict-template-expressions": 0,
+      "no-eval": 0
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "./src/**/*": [
+      "xo src --fix"
+    ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits",
+          "config": "./node_modules/cz-conventional-changelog"
+        }
+      ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogTitle": "# Changelog"
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "mem": "^4.0",
+    "yargs-parser": "^13.1.2"
+  },
+  "dependencies": {
+    "ajv": "6.12.4",
+    "chalk": "^4.1.0",
+    "jest-matcher-utils": "^26.6.2",
+    "lodash": "^4.17.20",
+    "pretty-format": "^26.6.2",
+    "schematized": "^1.9.0",
+    "variable-diff": "^2.0.2"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^26.0.19",
+    "@types/lodash": "^4.14.167",
+    "@types/node": "^14.14.19",
+    "commitizen": "^4.2.2",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint-config-xo-typescript": "^0.37.0",
+    "eslint-plugin-jest": "^24.1.3",
+    "husky": "^4.3.6",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.3.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3",
+    "xo": "^0.36.1"
+  },
+  "engines": {
+    "node": ">= 12.x"
+  },
+  "keywords": [
+    "jest",
+    "matcher",
+    "json",
+    "schema",
+    "object",
+    "convert",
+    "generate",
+    "types",
+    "type",
+    "produce",
+    "generic",
+    "validation",
+    "data",
+    "datatypes"
+  ]
+}
